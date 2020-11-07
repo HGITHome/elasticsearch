@@ -1,6 +1,7 @@
 package com.elastic.search;
 
 import com.elastic.search.service.IndexService;
+import com.elastic.search.utils.HtmlParseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -93,6 +95,15 @@ public class ComElasticSearchApplicationTests {
     @Test
     public void aggregationPercentiles() {
         indexService.aggregationPercentiles();
+    }
+
+    @Test
+    public void HtmlParseUtils() {
+        try {
+            HtmlParseUtils.listGoods("iphone12");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
