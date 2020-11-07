@@ -89,5 +89,10 @@ public class ComElasticSearchApplicationTests {
     public void aggregationCount() {
         indexService.aggregationCount();
     }
+
+    @Test
+    public void aggregationPercentiles() {
+        indexService.aggregationPercentiles();
+    }
 }
 
