@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * @author
@@ -34,11 +35,18 @@ public class HtmlParseUtils {
         Elements li = element.getElementsByTag("li");
         List<Content> list = new ArrayList<>();
         for (Element elements : li) {
-            String img = elements.getElementsByTag("img").eq(0).attr("src");
+            Elements imgs = elements.getElementsByClass("p-img").select("img");
+//            ListIterator<Element> eListIterator =  imgs.listIterator();
+//            while (eListIterator.hasNext()){
+//                System.out.println(eListIterator.next().attr("data-lazy-img"));
+//            }
+            if (imgs.size() == 0) {
+                imgs = elements.getElementsByClass("ps-item").select("img");
+            }
             String price = elements.getElementsByClass("p-price").eq(0).text();
             String title = elements.getElementsByClass("p-name").eq(0).text();
             Content content = new Content();
-            content.setImg(img);
+            content.setImg(imgs.attr("data-lazy-img"));
             content.setPrice(price);
             content.setTitle(title);
             list.add(content);

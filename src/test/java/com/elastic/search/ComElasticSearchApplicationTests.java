@@ -1,5 +1,7 @@
 package com.elastic.search;
 
+import com.alibaba.fastjson.JSON;
+import com.elastic.search.dto.Content;
 import com.elastic.search.service.IndexService;
 import com.elastic.search.utils.HtmlParseUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -100,7 +103,8 @@ public class ComElasticSearchApplicationTests {
     @Test
     public void HtmlParseUtils() {
         try {
-            HtmlParseUtils.listGoods("iphone12");
+            List<Content> contents = HtmlParseUtils.listGoods("iphone12-128g");
+            System.out.println(JSON.toJSON(contents));
         } catch (IOException e) {
             e.printStackTrace();
         }
